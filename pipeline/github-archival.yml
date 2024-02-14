@@ -1,0 +1,14 @@
+trigger: none
+pr: none
+pool: Premier Linux Agent
+
+variables:
+- group: code-self-service
+
+steps:
+- bash: $PYTHON gh_archival.py
+  displayName: GitHub Archival
+  env:
+    GH_ORG: 'premierinc'
+    GH_TOKEN: $(GH_TOKEN)
+    PYTHON: $(SYSTEM_PYTHON_3_11)
