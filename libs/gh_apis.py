@@ -11,9 +11,8 @@ class GitHubAuthorization:
         self.token_auth = f'Bearer {self.token}'
  
 class GitHubOrg:
-    '''
-        GitHub ORG Apis
-    '''
+        # GitHub ORG Api
+
     def __init__(self, org_name: str, token: str):
         self.org_name = org_name
         self.auth = GitHubAuthorization(token)
@@ -23,9 +22,13 @@ class GitHubOrg:
         }
  
     def github_archival(self, repo_name):
-        '''
-            Archive GitHub Repository
-        '''
+    # Check if the repository exists
+        check_url = f"{GH_BASE_URL}/repos/{self.org_name}/{repo_name}"
+        check_response = requests.get(check_url, headers=self.default_header)
+        if check_response.status_code != 200:
+            print(f"Error: GitHub Repository '{repo_name}' not found.")
+            return
+        # Archive the repository
         url = f"{GH_BASE_URL}/repos/{self.org_name}/{repo_name}"
         payload = json.dumps({"archived": True})
         response = requests.request('PATCH', url, headers=self.default_header, data=payload)
