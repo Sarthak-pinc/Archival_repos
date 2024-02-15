@@ -1,5 +1,5 @@
 import os
-from gh_api import GitHubOrg
+from libs.gh_apis import GitHubOrg
  
 # Assign environment variable values
 repo_name = os.environ['GH_REPO_NAME']
