@@ -11,4 +11,4 @@ steps:
   env:
     GH_ORG: 'premierinc'
     GH_TOKEN: $(GH_TOKEN)
-    PYTHON: $(SYSTEM_PYTHON_3_11)
+    PYTHON: $(SYSTEM_PYTHON_3_12)
